@@ -1,0 +1,16 @@
+Package: opentelemetry
+Title: OpenTelemtry R API and SDK
+Version: 0.0.0.9000
+Authors@R: 
+      person(
+        given = "Alex",
+        family = "Axthelm",
+        role = c("aut", "cre", "ctr"),
+        email = "Alex@AlexAxthelm.com",
+        comment = c(ORCID = "0000-0001-8579-8565")
+      )
+Description: Implementation of OpenTelemetry in R.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
