@@ -12,33 +12,7 @@ SpanProcessor <- R6::R6Class(
     },
     force_flush = function() {
       stop("Method 'force_flush' must be implemented in subclass")
-    }
-  ),
-  private = list(
-    exporter = NULL
+    },
+    span_exporter = NULL
   )
 )
-
-SimpleSpanProcessor <- R6::R6Class(
-  classname = "SimpleSpanProcessor",
-  inherit = SpanProcessor,
-  public = list(
-    initialize = function(exporter) {
-      private$exporter <- exporter
-    },
-    on_start = function(span) {
-      log_trace("SimpleSpanProcessor: on_start")
-    },
-    on_end = function(span) {
-      log_trace("SimpleSpanProcessor: on_end")
-    },
-    shutdown = function() {
-      self$exporter$shutdown()
-    },
-    force_flush = function() {
-      log_debug("SimpleSpanProcessor: force_flush")
-      return(TRUE)
-    }
-  )
-)
-

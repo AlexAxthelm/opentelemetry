@@ -15,8 +15,8 @@ TracerProvider <- R6::R6Class(
     get_tracer = function() {
       stop("Not Implemented.")
     },
-    add_span_processor = function() {
-      stop("Not Implemented.")
+    add_span_processor = function(processor) {
+      private[["span_processors"]] <- append(private[["span_processors"]], processor)
     },
     shutdown = function() {
       stop("Not Implemented.")
@@ -31,6 +31,7 @@ TracerProvider <- R6::R6Class(
       if (private$shutdown_on_exit) {
         self$shutdown()
       }
-    }
+    },
+    span_processors = list()
   )
 )

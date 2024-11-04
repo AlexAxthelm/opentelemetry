@@ -1,5 +1,5 @@
-BatchSpanProcessor <- R6::R6Class(
-  classname = "BatchSpanProcessor",
+SimpleSpanProcessor <- R6::R6Class(
+  classname = "SimpleSpanProcessor",
   inherit = SpanProcessor,
   public = list(
     initialize = function(exporter) {
@@ -12,13 +12,10 @@ BatchSpanProcessor <- R6::R6Class(
       stop("Not Implemented.")
     },
     shutdown = function() {
-      self[["exporter"]][["shutdown"]]()
-    },
-    worker = function() {
-      stop("Not Implemented.")
+      self[["span_exporter"]][["shutdown"]]()
     },
     force_flush = function() {
-      stop("Not Implemented.")
+      return(TRUE)
     }
   ),
   private = list(
