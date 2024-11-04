@@ -1,0 +1,4 @@
+linters: all_linters(
+    object_name_linter = object_name_linter(styles = c("CamelCase", "snake_case"))
+  )
+
