@@ -12,26 +12,31 @@ Resource <- R6::R6Class(
     #' @param schema_url URL for schema describing Resource attributes.
     #' @return A new `Resource` object.
     initialize = function(
-      attributes = NULL,
+      attributes = list(),
       schema_url = NULL
       ) {
-      stop("Not Implemented.")
+      private[["private_attributes"]] <- attributes
+      private[["private_schema_url"]] <- schema_url
     },
     #' @description
-    #' TODO: Document
-    create = function() {
-      stop("Not Implemented.")
+    #' Create a new resource object (alias for `Resource$new()`.
+    #' @param attributes Resource Attributes.
+    #' @param schema_url URL for schema describing Resource attributes.
+    #' @return A new `Resource` object.
+    create = function(
+      attributes = list(),
+      schema_url = NULL
+    ) {
+      self[["new"]](
+        attributes = attributes,
+        schema_url = schema_url
+      )
     },
     #' @description
     #' TODO: Document
     get_empty = function() {
       stop("Not Implemented.")
     },
-    #' @field attributes Attributes of the Resource
-    attributes = list(),
-    #' @field schema_url (optional) URL for schema describing Resource
-    #' attributes
-    schema_url = NULL,
     #' @description
     #' TODO: Document
     merge = function() {
@@ -41,6 +46,26 @@ Resource <- R6::R6Class(
     #' TODO: Document
     to_json = function() {
       stop("Not Implemented.")
+    }
+  ),
+  private = list(
+    private_attributes = list(),
+    private_schema_url = NULL
+  ),
+  active = list(
+    attributes = function(value) {
+      if (missing(value)) {
+        return(private[["private_attributes"]])
+      } else {
+        stop("Resource$attributes is read-only.")
+      }
+    },
+    schema_url = function(value) {
+      if (missing(value)) {
+        return(private[["private_schema_url"]])
+      } else {
+        stop("Resource$schema_url is read-only.")
+      }
     }
   )
 )

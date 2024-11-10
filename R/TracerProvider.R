@@ -12,8 +12,35 @@ TracerProvider <- R6::R6Class(
 
     },
     resource = NULL,
-    get_tracer = function() {
-      stop("Not Implemented.")
+    get_tracer = function(
+      instrumenting_module_name,
+      instrumenting_library_version,
+      schema_url = NULL,
+      attributes = list()
+    ) {
+      if (private[["disabled"]]) {
+        log_warn("OpenTelemetry SDK is disabled.")
+        return(NoOpTracer[["new"]]())
+      }
+      tracer <- Tracer[["new"]](
+        sampler = self[["sampler"]],
+        resource = self[["resource"]],
+        span_processor = self[["active_span_processor"]],
+        id_generator = self[["id_generator"]],
+        span_limits = self[["span_limits"]],
+        instrumentation_info = InstrumentationInfo[["new"]](
+          name = instrumenting_module_name,
+          version = instrumenting_library_version,
+          schema_url = schema_url
+        ),
+        instrumentation_scope = InstrumentationScope[["new"]](
+          name = instrumenting_module_name,
+          version = instrumenting_library_version,
+          schema_url = schema_url,
+          attributes = attributes
+        )
+      )
+      return(tracer)
     },
     add_span_processor = function(processor) {
       private[["span_processors"]] <- append(
@@ -35,6 +62,8 @@ TracerProvider <- R6::R6Class(
         self$shutdown()
       }
     },
-    span_processors = list()
+    span_processors = list(),
+    active_span_processor = NULL,
+    disabled = FALSE
   )
 )

@@ -14,7 +14,10 @@ test_that("Basic demo runs cleanly", {
   provider[["add_span_processor"]](processor)
   # expect_identical(provider[["processor"]], processor)
 
-  tracer <- provider[["get_tracer"]](name = "example_tracer", version = "0.0.0.9000")
+  tracer <- provider[["get_tracer"]](
+    instrumenting_module_name = "example_tracer",
+    instrumenting_library_version = "0.0.0.9000"
+  )
   expect_s3_class(tracer, "Tracer")
 
   outer_fun <- function() {
