@@ -26,6 +26,6 @@ get_current_span <- function(
 ) {
   span <- get_value(xSPAN_KEY, context = context)
   if (is.null(span) || !inherits(span, "Span")) {
-    return(invalid_span)
+    return(INVALID_SPAN)
   }
 }

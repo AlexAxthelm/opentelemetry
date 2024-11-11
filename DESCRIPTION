@@ -17,3 +17,21 @@ RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Collate: 
+    'BatchSpanProcessor.R'
+    'ConsoleSpanExporter.R'
+    'Resource.R'
+    'SimpleSpanProcessor.R'
+    'Span.R'
+    'SpanContext.R'
+    'SpanExporter.R'
+    'SpanProcessor.R'
+    'TraceFlags.R'
+    'Tracer.R'
+    'TracerProvider.R'
+    'Utils_Instrumentation.R'
+    'context.R'
+    'invalid_span.R'
+    'opentelemetry-package.R'
+    'trace_propagation.R'
+    'xRUNTIME_CONTEXT.R'
